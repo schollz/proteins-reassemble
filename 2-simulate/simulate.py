@@ -171,6 +171,7 @@ def runSimulation(nn):
     logger.info("Minimizing...")
     cmd = "%(amber)s/bin/pmemd.cuda -O -i %(cwd)s/01_Min.in -o %(cwd)s/01_Min.out -p %(cwd)s/prmtop -c %(cwd)s/inpcrd -r %(cwd)s/01_Min.rst -inf %(cwd)s/01_Min.mdinfo" % {
         'cwd': os.getcwd(), 'amber': os.environ['AMBERHOME']}
+    logger.debug("Running command '" + cmd + "'")
     proc = subprocess.Popen(shlex.split(cmd), shell=False, env=dict(
         os.environ, CUDA_VISIBLE_DEVICES=params['cudaDevice']))
     proc.wait()

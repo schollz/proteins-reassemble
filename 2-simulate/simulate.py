@@ -153,9 +153,9 @@ quit"""
     with open("reimage.in", "w") as f:
         f.write("""trajin 03_Prod.mdcrd
 trajout 03_Prod_reimage.mdcrd
-center :1-%(last)s
+center :1-50
 image familiar
-go""" % {'last': str(params['numResidues'])})
+go""")
 
     runSimulation(newFolder)
 

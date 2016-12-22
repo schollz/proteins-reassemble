@@ -118,11 +118,11 @@ def initiate(params):
     tleapConf = """source leaprc.ff14SB
 loadAmberParams frcmod.ionsjc_tip3p
 mol = loadpdb %s
-solvatebox mol TIP3PBOX 15.0
+solvatebox mol TIP3PBOX %2.1f
 addions mol Na+ 0
 addions mol Cl- 0
 saveamberparm mol prmtop inpcrd
-quit""" % params['pdb']
+quit""" % (params['pdb'],params['boxSize'])
     with open("tleap.conf", "w") as f:
         f.write(tleapConf)
     cmd = "tleap -f tleap.conf"

@@ -129,9 +129,6 @@ quit""" % params['pdb']
     proc = subprocess.Popen(shlex.split(cmd), shell=False)
     proc.wait()
     os.system("$AMBERHOME/bin/ambpdb -p prmtop < inpcrd > startingConfiguration.pdb")
-    os.remove("prmtop")
-    os.remove("inpcrd")
-    os.remove("tleap.conf")
 
     # Write configuration files
     for f in files:

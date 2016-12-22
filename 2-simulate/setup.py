@@ -144,6 +144,7 @@ if __name__ == "__main__":
     params = {}
     params['temp'] = 360.0
     params['pdb'] = raw_input('Enter pdb file (make sure to remove hydrogens first): ')
+    params['numResidues'] = int(raw_input('Enter number of residues: '))
     params['nanoseconds'] = 10  # nanoseconds per translation setp
     params['nanoseconds'] = float(
         raw_input('Enter simulation time (in nanoseconds): '))

@@ -46,7 +46,7 @@ def dumpPDBs():
     logger = logging.getLogger("dumpPDBs")
 
     logger.info("Reimaging...")
-    cmd = "%(amber)s/bin/cpptraj -p %(cwd)s/prmtop.backup -i %(cwd)s/reimage.in" % {
+    cmd = "%(amber)s/bin/cpptraj -p %(cwd)s/prmtop -i %(cwd)s/reimage.in" % {
         'cwd': os.getcwd(), 'amber': os.environ['AMBERHOME']}
     logger.debug("Running command '" + cmd + "'")
     proc = subprocess.Popen(shlex.split(cmd), shell=False)
@@ -54,7 +54,7 @@ def dumpPDBs():
     logger.info("Reimaging finished.")
 
     with open("dump.tcl", "w") as f:
-        f.write("""mol new prmtop.backup type parm7
+        f.write("""mol new prmtop type parm7
 mol addfile 03_Prod_reimage.mdcrd type crdbox waitfor -1
 
 file mkdir pdbs/

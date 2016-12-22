@@ -133,6 +133,12 @@ quit""" % params['pdb']
     os.remove("inpcrd")
     os.remove("tleap.conf")
 
+    # Write configuration files
+    for f in files:
+        with open(f, 'w') as f2:
+            f2.write(files[f])
+
+    # Write parameters
     with open('params.json', 'w') as f:
         f.write(json.dumps(params, indent=2))
 

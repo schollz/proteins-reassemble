@@ -60,7 +60,7 @@ mol addfile 03_Prod_reimage.mdcrd type crdbox waitfor -1
 file mkdir pdbs/
 set nf [molinfo top get numframes]
 for {set i 0} {$i < $nf} {incr i} {
-set a [atomselect top "all" frame $i]
+set a [atomselect top "protein" frame $i]
 $a writepdb pdbs/$i.pdb
 }
 
@@ -153,9 +153,9 @@ quit"""
     with open("reimage.in", "w") as f:
         f.write("""trajin 03_Prod.mdcrd
 trajout 03_Prod_reimage.mdcrd
-center :1-50
+center :1-%d
 image familiar
-go""")
+go""" % params['numResidues'])
 
     runSimulation(newFolder)
 
@@ -244,9 +244,9 @@ def production():
     with open("reimage.in", "w") as f:
         f.write("""trajin 03_Prod.mdcrd
 trajout 03_Prod_reimage.mdcrd
-center :1-50
+center :1-%d
 image familiar
-go""")
+go""" % params['numResidues'])
 
     runSimulation('production')
 
